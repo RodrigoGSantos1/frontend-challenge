@@ -1,0 +1,91 @@
+@import '../../styles/variables';
+
+.productCard {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+  background-color: $color-gray-dark;
+  margin-bottom: 1rem;
+}
+
+.productImage {
+  width: 8.688rem;
+  height: 8.688rem;
+  border-radius: 4px;
+  margin-right: 2rem;
+}
+
+.productContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.productName {
+  font-size: 18px;
+  text-align: start;
+  font-weight: 500;
+  color: $color-white;
+}
+
+.productDescription {
+  font-weight: 300;
+  font-size: 0.75rem;
+  margin: 10px 0;
+  text-align: start;
+  color: $color-gray-light;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.priceAndButtonContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.priceContent {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.ethLogo {
+  width: 1.75rem;
+  margin-right: 0.5rem;
+}
+
+.productPrice {
+  font-size: 1.125rem;
+  text-align: start;
+  color: $color-white;
+}
+
+.cardActins {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.trashIcon {
+  width: 18.23px;
+}
+
+.trashButton {
+  background-color: $color-primary;
+  border: none;
+  text-align: center;
+  width: 2.688rem;
+  height: 2.688rem;
+  border-radius: 100%;
+  cursor: pointer;
+}

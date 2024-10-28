@@ -1,0 +1,26 @@
+@import '../../styles/variables';
+
+.counterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 107px;
+  height: 40px;
+  padding: 10px;
+  background-color: $color-dark;
+  border-radius: 10px;
+}
+
+.button {
+  background: none;
+  border: none;
+  color: $color-white;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.count {
+  color: $color-white;
+  font-size: 14px;
+}

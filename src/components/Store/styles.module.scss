@@ -1,0 +1,72 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.storeContainer {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 10rem auto;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+
+  @include responsive('tablet') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include responsive('mobile') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.moreButtonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 8rem;
+}
+
+
+.progressBarContainer {
+  width: 406px;
+  height: 8px;
+  background-color: $color-gray-dark;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progressBar {
+  height: 100%;
+  background-color: $color-primary;
+  transition: width 0.3s ease;
+}
+
+.moreButton {
+  background-color: $color-gray-dark;
+  border: none;
+  padding: 10px 16px;
+  color: $color-white;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 406px;
+  height: 86px;
+  margin-top: auto;
+  margin-bottom: 2rem;
+
+  &:hover {
+    background-color: $color-primary;
+    cursor: pointer;
+  }
+
+  &:disabled {
+    background-color: $color-gray-dark;
+    cursor: auto
+  }
+}
