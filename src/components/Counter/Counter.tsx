@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './styles.module.scss';
-import { CartItem } from '@/@types/Product';
+import { CartItemType } from '@/@types/Product';
 import { useCartActions } from '@/store/actions';
 
 interface CartProductCardProps {
-  product: CartItem;
+  product: CartItemType;
 }
 
 export default function Counter({ product }: CartProductCardProps) {
@@ -15,17 +15,11 @@ export default function Counter({ product }: CartProductCardProps) {
 
   return (
     <div className={styles.counterContainer}>
-      <button
-        className={styles.button}
-        onClick={handleDecrement}
-      >
+      <button className={styles.button} onClick={handleDecrement}>
         −
       </button>
       <span className={styles.count}>{product.quantity}</span>
-      <button
-        className={styles.button}
-        onClick={handleIncrement}
-      >
+      <button className={styles.button} onClick={handleIncrement}>
         +
       </button>
     </div>

@@ -6,7 +6,6 @@ import { motion, useAnimationControls } from 'framer-motion';
 import eth from '../../assets/svg/eth.svg';
 import trash from '../../assets/svg/trash.svg';
 import styles from './styles.module.scss';
-import Image from 'next/image';
 
 interface CartProductCardProps {
   product: CartItemType;
@@ -37,7 +36,7 @@ export default function CartProductCard({ product }: CartProductCardProps) {
       animate={controls}
       transition={{ duration: 0.3 }}
     >
-      <Image
+      <img
         src={product.image}
         alt={`${product.name} image`}
         className={styles.productImage}
@@ -47,21 +46,14 @@ export default function CartProductCard({ product }: CartProductCardProps) {
         <p className={styles.productDescription}>{product.description}</p>
         <div className={styles.priceAndButtonContainer}>
           <div className={styles.priceContent}>
-            <Image
-              src={eth.src}
-              alt="Ethereum logo"
-              className={styles.ethLogo}
-            />
+            <img src={eth.src} alt="Ethereum logo" className={styles.ethLogo} />
             <p className={styles.productPrice}>{product.price} ETH</p>
           </div>
         </div>
         <div className={styles.cardActins}>
           <Counter product={product} />
-          <button
-            className={styles.trashButton}
-            onClick={handleAnimate}
-          >
-            <Image
+          <button className={styles.trashButton} onClick={handleAnimate}>
+            <img
               src={trash.src}
               alt="trash logo"
               className={styles.trashIcon}

@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import eth from '../../assets/svg/eth.svg';
 import arrowLeft from '../../assets/svg/arrowLeft.svg';
 import styles from './styles.module.scss';
-import Image from 'next/image';
 
 export default function Cart() {
   const { cartItems, handleToggleOverview } = useCartActions();
@@ -40,11 +39,8 @@ export default function Cart() {
         transition={{ duration: 0.3 }}
       >
         <div className={styles.cartHeader}>
-          <button
-            className={styles.closeButton}
-            onClick={handleToggleOverview}
-          >
-            <Image
+          <button className={styles.closeButton} onClick={handleToggleOverview}>
+            <img
               src={arrowLeft.src}
               alt="trash logo"
               className={styles.arrowIcon}
@@ -55,10 +51,7 @@ export default function Cart() {
         <div className={styles.container}>
           {cartItems && cartItems.length > 0 ? (
             cartItems.map((item: CartItemType) => (
-              <CartProductCard
-                product={item}
-                key={item.id}
-              />
+              <CartProductCard product={item} key={item.id} />
             ))
           ) : (
             <div className={styles.noProduct}>
@@ -71,7 +64,7 @@ export default function Cart() {
             <div className={styles.countPrice}>
               <span>TOTAL</span>
               <div className={styles.priceContent}>
-                <Image
+                <img
                   src={eth.src}
                   alt="Ethereum logo"
                   className={styles.ethLogo}

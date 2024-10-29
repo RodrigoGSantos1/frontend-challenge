@@ -4,7 +4,6 @@ import eth from '../../assets/svg/eth.svg';
 import { ProductType } from '@/@types/Product';
 import { useCartActions } from '@/store/actions';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 interface ProductCardProps {
   product: ProductType;
@@ -27,7 +26,7 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
         whileHover={{ scale: 1.07 }}
         transition={{ duration: 0.1, ease: 'easeInOut' }}
       >
-        <Image
+        <img
           src={product.image}
           alt={`${product.name} image`}
           className={styles.productImage}
@@ -36,11 +35,7 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
         <p className={styles.productDescription}>{product.description}</p>
         <div className={styles.priceAndButtonContainer}>
           <div className={styles.priceContent}>
-            <Image
-              src={eth.src}
-              alt="Ethereum logo"
-              className={styles.ethLogo}
-            />
+            <img src={eth.src} alt="Ethereum logo" className={styles.ethLogo} />
             <p className={styles.productPrice}>{product.price} ETH</p>
           </div>
           <button
