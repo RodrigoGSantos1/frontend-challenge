@@ -30,7 +30,6 @@
   margin-top: 8rem;
 }
 
-
 .progressBarContainer {
   width: 406px;
   height: 8px;
@@ -71,7 +70,7 @@
 
   &:disabled {
     background-color: $color-gray-dark;
-    cursor: auto
+    cursor: auto;
   }
 
   @include responsive('mobile') {

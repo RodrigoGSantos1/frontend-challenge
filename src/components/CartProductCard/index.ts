@@ -1,4 +1,3 @@
-import CartProductCard from "./CartProductCard";
+import CartProductCard from './CartProductCard';
 
-
-export { CartProductCard }
+export { CartProductCard };

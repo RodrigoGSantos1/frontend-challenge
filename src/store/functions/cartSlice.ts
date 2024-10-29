@@ -1,18 +1,19 @@
-import { CartItem, CartState } from "@/@types/Product";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { CartItemType, CartStateType } from '@/@types/Product';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-
-const initialState: CartState = {
+const initialState: CartStateType = {
   items: [],
   isOverviewVisible: false,
 };
 
 const cartSlice = createSlice({
-  name: "cart",
+  name: 'cart',
   initialState,
   reducers: {
-    addItem: (state, action: PayloadAction<CartItem>) => {
-      const existingItem = state.items.find(item => item.id === action.payload.id);
+    addItem: (state, action: PayloadAction<CartItemType>) => {
+      const existingItem = state.items.find(
+        item => item.id === action.payload.id,
+      );
       if (existingItem) {
         existingItem.quantity += action.payload.quantity;
       } else {
@@ -22,7 +23,7 @@ const cartSlice = createSlice({
     removeItem: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter(item => item.id !== action.payload);
     },
-    clearCart: (state) => {
+    clearCart: state => {
       state.items = [];
     },
     incrementQuantity: (state, action: PayloadAction<number>) => {
@@ -37,11 +38,18 @@ const cartSlice = createSlice({
         existingItem.quantity -= 1;
       }
     },
-    toggleOverview: (state) => {
+    toggleOverview: state => {
       state.isOverviewVisible = !state.isOverviewVisible;
     },
   },
 });
 
-export const { addItem, removeItem, clearCart, toggleOverview, incrementQuantity, decrementQuantity } = cartSlice.actions;
+export const {
+  addItem,
+  removeItem,
+  clearCart,
+  toggleOverview,
+  incrementQuantity,
+  decrementQuantity,
+} = cartSlice.actions;
 export default cartSlice.reducer;

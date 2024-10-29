@@ -9,7 +9,9 @@ interface FetchProductsType {
 }
 
 export const fetchProducts = async (params: FetchProductsType) => {
-  const { data } = await api.get(`${paths.products}?page=${params.page}&limit=${params.limit}`);
+  const { data } = await api.get(
+    `${paths.products}?page=${params.page}&limit=${params.limit}`,
+  );
   return data;
 };
 
@@ -17,5 +19,5 @@ export const useProducts = (params: FetchProductsType) => {
   return useQuery({
     queryKey: [QueryKeys.products, params],
     queryFn: () => fetchProducts(params),
-  })
-}
+  });
+};

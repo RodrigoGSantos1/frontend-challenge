@@ -1,4 +1,4 @@
-import { Product } from '@/@types/Product';
+import { ProductType } from '@/@types/Product';
 import { ProductCard } from '../ProductCard';
 import { useProducts } from '@/services/productsApi';
 import styles from './styles.module.scss';
@@ -11,7 +11,7 @@ export default function Store() {
   const [limit, setLimit] = useState(12);
   const [hasClickedLoadMore, setHasClickedLoadMore] = useState(false);
   const { data, isLoading } = useProducts({ limit, page: 1 });
-  const { isOverviewVisible } = useCartActions()
+  const { isOverviewVisible } = useCartActions();
 
   const lastItemRef = useRef<HTMLDivElement | null>(null);
 
@@ -29,42 +29,43 @@ export default function Store() {
     }
   }, [data, hasClickedLoadMore]);
 
-  return (<>
-    {isOverviewVisible && <Cart />}
-    <div className={styles.storeContainer}>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <>
-          <div className={styles.productsGrid}>
-            {data && data.data.length > 0 &&
-              data.data.map((product: Product, key: number) => (
-                <ProductCard
-                  product={product}
-                  ref={key === data.data.length - 1 ? lastItemRef : null}
-                  key={key}
-                />
-              ))
-            }
-          </div>
-          <div className={styles.moreButtonContainer}>
-            <div className={styles.progressBarContainer}>
-              <div
-                className={styles.progressBar}
-                style={{ width: `${progress}%` }}
-              ></div>
+  return (
+    <>
+      {isOverviewVisible && <Cart />}
+      <div className={styles.storeContainer}>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            <div className={styles.productsGrid}>
+              {data &&
+                data.data.length > 0 &&
+                data.data.map((product: ProductType, key: number) => (
+                  <ProductCard
+                    product={product}
+                    ref={key === data.data.length - 1 ? lastItemRef : null}
+                    key={key}
+                  />
+                ))}
             </div>
-            <button
-              className={styles.moreButton}
-              onClick={handleLoadMore}
-              disabled={isLoadMoreDisabled}
-            >
-              {isLoadMoreDisabled ? 'VOCÊ JÁ VIU TUDO' : 'CARREGAR MAIS'}
-            </button>
-          </div>
-        </>
-      )}
-    </div>
-  </>
+            <div className={styles.moreButtonContainer}>
+              <div className={styles.progressBarContainer}>
+                <div
+                  className={styles.progressBar}
+                  style={{ width: `${progress}%` }}
+                ></div>
+              </div>
+              <button
+                className={styles.moreButton}
+                onClick={handleLoadMore}
+                disabled={isLoadMoreDisabled}
+              >
+                {isLoadMoreDisabled ? 'VOCÊ JÁ VIU TUDO' : 'CARREGAR MAIS'}
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+    </>
   );
 }

@@ -8,16 +8,26 @@ interface CartProductCardProps {
 }
 
 export default function Counter({ product }: CartProductCardProps) {
-  const { handleDecrementQuantity, handleIncrementQuantity } = useCartActions()
+  const { handleDecrementQuantity, handleIncrementQuantity } = useCartActions();
 
   const handleIncrement = () => handleIncrementQuantity(product.id);
   const handleDecrement = () => handleDecrementQuantity(product.id);
 
   return (
     <div className={styles.counterContainer}>
-      <button className={styles.button} onClick={handleDecrement}>−</button>
+      <button
+        className={styles.button}
+        onClick={handleDecrement}
+      >
+        −
+      </button>
       <span className={styles.count}>{product.quantity}</span>
-      <button className={styles.button} onClick={handleIncrement}>+</button>
+      <button
+        className={styles.button}
+        onClick={handleIncrement}
+      >
+        +
+      </button>
     </div>
   );
 }

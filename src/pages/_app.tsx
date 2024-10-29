@@ -14,5 +14,5 @@ export default function MyApp({ Component, pageProps }: any) {
         <Component {...pageProps} />
       </Provider>
     </QueryClientProvider>
-  )
+  );
 }
