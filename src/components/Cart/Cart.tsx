@@ -1,10 +1,11 @@
 import { CartItem } from '@/@types/Product';
 import { useCartActions } from '@/store/actions';
 import { CartProductCard } from '../CartProductCard';
-import arrowLeft from '../../assets/svg/arrowLeft.svg';
-import eth from '../../assets/svg/eth.svg';
-import styles from './styles.module.scss';
 import { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import eth from '../../assets/svg/eth.svg';
+import arrowLeft from '../../assets/svg/arrowLeft.svg';
+import styles from './styles.module.scss';
 
 export default function Cart() {
   const { cartItems, handleToggleOverview } = useCartActions();
@@ -23,8 +24,14 @@ export default function Cart() {
 
   return (
     <div className={styles.overlayWrapper}>
-      <div className={styles.backgroundOverlay} onClick={handleToggleOverview}></div>
-      <div className={styles.overlay}>
+      <div className={styles.backgroundOverlay} onClick={handleToggleOverview} />
+      <motion.div
+        className={styles.overlay}
+        initial={{ x: '100%', opacity: 0 }}
+        animate={{ x: '0%', opacity: 1 }}
+        exit={{ x: '100%', opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      >
         <div className={styles.cartHeader}>
           <button className={styles.closeButton} onClick={handleToggleOverview}>
             <img src={arrowLeft.src} alt="trash logo" className={styles.arrowIcon} />
@@ -54,7 +61,7 @@ export default function Cart() {
             <button className={styles.finishBuy} onClick={() => { }}>FINALIZAR COMPRA</button>
           </div>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }
