@@ -1,4 +1,5 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
 
 .productCard {
   width: 100%;
@@ -7,7 +8,6 @@
   border-radius: 8px;
   padding: 16px;
   text-align: center;
-  transition: transform 0.2s ease-in-out;
   background-color: $color-gray-dark;
   margin-bottom: 1rem;
 }
@@ -17,6 +17,11 @@
   height: 8.688rem;
   border-radius: 4px;
   margin-right: 2rem;
+
+  @include responsive('mobile') {
+    width: 45%;
+    height: 45%;
+  }
 }
 
 .productContent {
@@ -43,6 +48,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  @include responsive('mobile') {
+    max-width: 100px;
+  }
 }
 
 .priceAndButtonContainer {
@@ -88,4 +97,9 @@
   height: 2.688rem;
   border-radius: 100%;
   cursor: pointer;
+
+  @include responsive('mobile') {
+    width: 2rem;
+    height: 2rem;
+  }
 }

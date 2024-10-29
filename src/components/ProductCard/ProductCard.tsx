@@ -3,6 +3,7 @@ import styles from './styles.module.scss';
 import eth from '../../assets/svg/eth.svg';
 import { Product } from '@/@types/Product';
 import { useCartActions } from '@/store/actions';
+import { motion } from 'framer-motion';
 
 interface ProductCardProps {
   product: Product;
@@ -18,7 +19,12 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(({ product }, r
   const isProductInCart = cartItems.some(item => item.id === product.id);
 
   return (
-    <div className={styles.productCard} ref={ref}>
+    <motion.div
+      className={styles.productCard}
+      ref={ref}
+      whileHover={{ scale: 1.07 }}
+      transition={{ duration: 0.1, ease: 'easeInOut' }}
+    >
       <img src={product.image} alt={`${product.name} image`} className={styles.productImage} />
       <h2 className={styles.productName}>{product.name}</h2>
       <p className={styles.productDescription}>{product.description}</p>
@@ -34,7 +40,7 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(({ product }, r
           {isProductInCart ? "ADICIONADO AO CARRINHO" : "COMPRAR"}
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 });
 

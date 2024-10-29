@@ -4,11 +4,14 @@ import { useProducts } from '@/services/productsApi';
 import styles from './styles.module.scss';
 import { Loading } from '../Loading';
 import { useState, useRef, useEffect } from 'react';
+import { useCartActions } from '@/store/actions';
+import { Cart } from '../Cart';
 
 export default function Store() {
   const [limit, setLimit] = useState(12);
   const [hasClickedLoadMore, setHasClickedLoadMore] = useState(false);
   const { data, isLoading } = useProducts({ limit, page: 1 });
+  const { isOverviewVisible } = useCartActions()
 
   const lastItemRef = useRef<HTMLDivElement | null>(null);
 
@@ -26,7 +29,8 @@ export default function Store() {
     }
   }, [data, hasClickedLoadMore]);
 
-  return (
+  return (<>
+    {isOverviewVisible && <Cart />}
     <div className={styles.storeContainer}>
       {isLoading ? (
         <Loading />
@@ -61,5 +65,6 @@ export default function Store() {
         </>
       )}
     </div>
+  </>
   );
 }

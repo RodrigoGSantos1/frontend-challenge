@@ -1,15 +1,14 @@
-import { useCartActions } from "@/store/actions";
-import { Cart, Header, Store } from "../components";
-import { useEffect } from "react";
+import { Header, Store } from "../components";
+import { AnimatePresence } from "framer-motion";
 
 export default function Home() {
-  const { isOverviewVisible } = useCartActions()
 
   return (
     <>
-      <Header />
-      <Store />
-      {isOverviewVisible && <Cart />}
+      <AnimatePresence>
+        <Header />
+        <Store />
+      </AnimatePresence>
     </>
   );
 }

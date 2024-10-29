@@ -38,6 +38,10 @@
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 0.5rem;
+
+  @include responsive('mobile') {
+    width: 300px;
+  }
 }
 
 .progressBar {
@@ -68,5 +72,9 @@
   &:disabled {
     background-color: $color-gray-dark;
     cursor: auto
+  }
+
+  @include responsive('mobile') {
+    width: 300px;
   }
 }
