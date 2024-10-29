@@ -1,20 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { CartItem } from '@/@types/Product';
 import { Counter } from '../Counter';
 import { useCartActions } from '@/store/actions';
+import { motion, useAnimationControls } from 'framer-motion';
 import eth from '../../assets/svg/eth.svg';
 import trash from '../../assets/svg/trash.svg';
-import styles from './styles.module.scss'
+import styles from './styles.module.scss';
 
 interface CartProductCardProps {
   product: CartItem;
 }
 
 export default function CartProductCard({ product }: CartProductCardProps) {
-  const { handleRemoveItem } = useCartActions()
+  const [inAnimation, setInAnimation] = useState(false);
+  const { handleRemoveItem } = useCartActions();
+  const controls = useAnimationControls();
+
+  const handleAnimate = () => {
+    setInAnimation(true);
+    setTimeout(() => {
+      handleRemoveItem(product.id);
+    }, 300);
+  };
+
+  useEffect(() => {
+    if (inAnimation) {
+      controls.start({ x: '100%', opacity: 0 });
+    }
+  }, [inAnimation, controls]);
 
   return (
-    <div className={styles.productCard}>
+    <motion.div
+      className={styles.productCard}
+      initial={{ x: 0, opacity: 1 }}
+      animate={controls}
+      transition={{ duration: 0.3 }}
+    >
       <img src={product.image} alt={`${product.name} image`} className={styles.productImage} />
       <div className={styles.productContent}>
         <h2 className={styles.productName}>{product.name}</h2>
@@ -27,12 +48,11 @@ export default function CartProductCard({ product }: CartProductCardProps) {
         </div>
         <div className={styles.cardActins}>
           <Counter product={product} />
-          <button className={styles.trashButton} onClick={() => handleRemoveItem(product.id)}>
+          <button className={styles.trashButton} onClick={handleAnimate}>
             <img src={trash.src} alt="trash logo" className={styles.trashIcon} />
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
-
